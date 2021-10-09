@@ -1,5 +1,5 @@
 # llvm-snes
-Let's give this another try with LLVM 13.  Attempting to add a SNES backend target to LLVM.
+Let's give this another try with LLVM 13.  Attempting to add a SNES backend target to LLVM, then eventually add a driver using clang.
 
 Build:
 mkdir build
