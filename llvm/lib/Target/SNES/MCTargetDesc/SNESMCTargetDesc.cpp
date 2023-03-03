@@ -32,18 +32,8 @@ static MCAsmInfo *createSNESMCAsmInfo(const MCRegisterInfo &MRI,
                                       const Triple &TT,
                                       const MCTargetOptions &Options) {
   MCAsmInfo *MAI = new SNESELFMCAsmInfo(TT);
-  unsigned Reg = MRI.getDwarfRegNum(SP::O6, true);
+  unsigned Reg = MRI.getDwarfRegNum(SNES::A, true);
   MCCFIInstruction Inst = MCCFIInstruction::cfiDefCfa(nullptr, Reg, 0);
-  MAI->addInitialFrameState(Inst);
-  return MAI;
-}
-
-static MCAsmInfo *createSNESV9MCAsmInfo(const MCRegisterInfo &MRI,
-                                        const Triple &TT,
-                                        const MCTargetOptions &Options) {
-  MCAsmInfo *MAI = new SNESELFMCAsmInfo(TT);
-  unsigned Reg = MRI.getDwarfRegNum(SP::O6, true);
-  MCCFIInstruction Inst = MCCFIInstruction::cfiDefCfa(nullptr, Reg, 2047);
   MAI->addInitialFrameState(Inst);
   return MAI;
 }
@@ -56,14 +46,12 @@ static MCInstrInfo *createSNESMCInstrInfo() {
 
 static MCRegisterInfo *createSNESMCRegisterInfo(const Triple &TT) {
   MCRegisterInfo *X = new MCRegisterInfo();
-  InitSNESMCRegisterInfo(X, SP::O7);
+  InitSNESMCRegisterInfo(X, SNES::A);
   return X;
 }
 
 static MCSubtargetInfo *createSNESMCSubtargetInfo(const Triple &TT,
                                                   StringRef CPU, StringRef FS) {
-  if (CPU.empty())
-    CPU = (TT.getArch() == Triple::snes) ? "v9" : "v8";
   return createSNESMCSubtargetInfoImpl(TT, CPU, /*TuneCPU*/ CPU, FS);
 }
 
