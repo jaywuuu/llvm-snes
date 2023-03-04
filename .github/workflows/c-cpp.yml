@@ -16,6 +16,6 @@ jobs:
     - name: create directory
       run: mkdir build && cd build
     - name: configure cmake
-      run: cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_TARGETS_TO_BUILD=SNES -DCMAKE_BUILD_TYPE=Release -DLLVM_OPTIMIZED_TABLEGEN=On ../llvm
+      run: cmake -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_TARGETS_TO_BUILD=SNES -DCMAKE_BUILD_TYPE=Release -DLLVM_OPTIMIZED_TABLEGEN=On ../llvm-snes/llvm
     - name: make
       run: make
