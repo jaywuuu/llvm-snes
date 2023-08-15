@@ -18,6 +18,4 @@ class InstSNES<bits<2> opVal, dag outs, dag ins, string asmstr, list<dag> patter
 
   let DecoderNamespace = "SNES";
   field bits<32> SoftFail = 0;
-
 }
-
